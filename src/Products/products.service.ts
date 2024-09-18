@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { error } from "console";
+import { Products } from "./products.entity";
 
 @Injectable()
 export class ProductsService{
@@ -74,21 +75,22 @@ export class ProductsService{
         return product
     }
 
-    async addProduct(product: any) {
+    async addProduct(product: Partial<Products>) {
         const maxId = this.products.reduce((max, prod) => Math.max(max, prod.id), 0);
         product.id = maxId + 1;
-        this.products.push(product)
+        this.products.push(product as Products)
         return product
     }
 
-    async editProduct(id: number, product: any) {
+    async editProduct(id: number, product: Partial<Products>) {
         const existingProductIndex = this.products.findIndex(prod => prod.id === id);
         if (existingProductIndex === -1) {
             throw new Error('Producto no encontrado');
         }
-        product.id = id;
-        this.products[existingProductIndex] = product;
-        return product;
+        const existingProduct = this.products[existingProductIndex];
+        const updatedProduct = { ...existingProduct, ...product, id };
+        this.products[existingProductIndex] = updatedProduct;
+        return updatedProduct;
     }
 
     async deleteProduct(id: number) {

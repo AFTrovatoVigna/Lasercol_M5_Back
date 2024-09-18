@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ProductsService } from "./products.service";
+import { ProductsService } from "./products.service"
+import { Products } from "./products.entity";
+
 
 @Controller("products")
 export class ProductsController{
@@ -13,12 +15,12 @@ export class ProductsController{
     }
 
     @Post()
-    addProduct(@Body() product: any) {
+    addProduct(@Body() product: Partial<Products>) {
         return this.productsService.addProduct(product)
     }
 
     @Put("id")
-    editProduct(@Param("id")id: string, @Body() product: any){
+    editProduct(@Param("id")id: string, @Body() product: Partial<Products>){
         return this.productsService.editProduct(Number(id), product)
     }
 
