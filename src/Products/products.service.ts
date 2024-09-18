@@ -11,10 +11,11 @@ export class ProductsService{
             material: 'Cerámica',
             medida: '90x90 mm',
             color: 'Blanco',
-            price: 25000,
+            price: 25000.00,
             stock: 20,
-            imagen: 'Image url 1',
-            category: "taza"
+            imgUrl: 'Image url 1',
+            category: "taza",
+            isDeleted: false
         },
         {
             id: 2,
@@ -23,10 +24,11 @@ export class ProductsService{
             material: 'Plástico',
             medida: '140 mm',
             color: 'Negro',
-            price: 10000,
+            price: 10000.00,
             stock: 50,
-            imagen: 'Image url 2',
-            category: "boligrafo"
+            imgUrl: 'Image url 2',
+            category: "boligrafo",
+            isDeleted: false
         },
         {
             id: 3,
@@ -35,10 +37,11 @@ export class ProductsService{
             material: 'Papel reciclado',
             medida: '150x210 mm',
             color: 'Azul',
-            price: 18000, 
+            price: 18000.00, 
             stock: 30,
-            imagen: 'Image url 3',
-            category: "cuaderno"
+            imgUrl: 'Image url 3',
+            category: "cuaderno",
+            isDeleted: false
         }
     ];
     
