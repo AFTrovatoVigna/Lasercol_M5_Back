@@ -1,12 +1,21 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ProductsService } from './Products/products.service';
+import { CategoriesService } from './categories/categories.service';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@Controller('home')
+export class HomeController {
+  constructor(
+    private readonly productoService: ProductsService,
+    private readonly categoriaService: CategoriesService,
+  ) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async obtenerDatosHome() {
+    const productos = await this.productoService.getProducts();
+    const categorias = await this.categoriaService.getCategories();
+    return {
+      productos,
+      categorias,
+    };
   }
 }
