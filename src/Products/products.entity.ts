@@ -13,31 +13,31 @@ export class Products{
         nullable: false,
         unique: true
     })
-    name: string
-
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    description: string;
-
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    material: string;
-
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    medida: string;
+    nombre: string
 
     @Column({
         type: 'text',
         nullable: false
     })
     color: string;
+    
+    @Column({
+        type: 'text',
+        nullable: false
+    })
+    material: string;
+    
+    @Column({
+        type: 'text',
+        nullable: false
+    })
+    medidas: string;
+
+    @Column({
+        type: 'int',
+        nullable: false
+    })
+    stock: number;
 
     @Column({
         type: 'decimal',
@@ -45,13 +45,7 @@ export class Products{
         scale: 2,
         nullable: false
     })
-    price: number;
-
-    @Column({
-        type: 'int',
-        nullable: false
-    })
-    stock: number;
+    valor: number;
 
     @Column({
         type: 'varchar',
