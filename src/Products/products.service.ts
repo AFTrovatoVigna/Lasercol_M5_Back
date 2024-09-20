@@ -7,39 +7,36 @@ export class ProductsService{
     private products = [
         {
             id: 1,
-            name: 'Taza de café',
-            description: 'Taza de cerámica blanca con diseño personalizado',
-            material: 'Cerámica',
-            medida: '90x90 mm',
+            nombre: 'Taza_de_café',
             color: 'Blanco',
-            price: 25000.00,
+            material: 'Cerámica',
+            medidas: '90x90 mm',
             stock: 20,
+            valor: 25000.00,
             imgUrl: 'Image url 1',
             category: "taza",
             isDeleted: false
         },
         {
             id: 2,
-            name: 'Bolígrafo ergonómico',
-            description: 'Bolígrafo de tinta negra con diseño ergonómico',
-            material: 'Plástico',
-            medida: '140 mm',
+            nombre: 'Bolígrafo_ergonómico',
             color: 'Negro',
-            price: 10000.00,
+            material: 'Plástico',
+            medidas: '140 mm',
             stock: 50,
+            valor: 10000.00,
             imgUrl: 'Image url 2',
             category: "boligrafo",
             isDeleted: false
         },
         {
             id: 3,
-            name: 'Cuaderno con espiral',
-            description: 'Cuaderno de 100 hojas con tapa dura',
-            material: 'Papel reciclado',
-            medida: '150x210 mm',
+            nombre: 'Cuaderno_con_espiral',
             color: 'Azul',
-            price: 18000.00, 
+            material: 'Papel reciclado',
+            medidas: '150x210 mm',
             stock: 30,
+            valor: 18000.00,
             imgUrl: 'Image url 3',
             category: "cuaderno",
             isDeleted: false
@@ -60,7 +57,7 @@ export class ProductsService{
     }
 
     async getProductByName(name: string) {
-        const product = this.products.find(prod => prod.name === name)
+        const product = this.products.find(prod => prod.nombre === name)
         if (!product) {
             throw new Error('Producto no encontrado');
         }

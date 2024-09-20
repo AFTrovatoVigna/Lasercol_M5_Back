@@ -19,7 +19,7 @@ export class ProductsController{
         return this.productsService.addProduct(product)
     }
 
-    @Put("id")
+    @Put(":id")
     editProduct(@Param("id")id: string, @Body() product: Partial<Products>){
         return this.productsService.editProduct(Number(id), product)
     }
@@ -29,10 +29,10 @@ export class ProductsController{
         return this.productsService.getProductById(Number(id))
     }
 
-    @Get(":name")
-    getProductByName(@Param("name") name: string) {
-        return this.productsService.getProductByName(name)
-    }
+    //@Get(":nombre")
+    //getProductByName(@Param("nombre") nombre: string) {
+    //    return this.productsService.getProductByName(nombre)
+    //}
 
     @Get("find/:category")
     getProductByCategory(@Param("category") category: string){
