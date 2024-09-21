@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { ProductsService } from "./products.service";
+import { ProductsService } from "./products.service"
+import { Products } from "./products.entity";
+
 
 @Controller("products")
 export class ProductsController{
@@ -13,12 +15,12 @@ export class ProductsController{
     }
 
     @Post()
-    addProduct(@Body() product: any) {
+    addProduct(@Body() product: Partial<Products>) {
         return this.productsService.addProduct(product)
     }
 
-    @Put("id")
-    editProduct(@Param("id")id: string, @Body() product: any){
+    @Put(":id")
+    editProduct(@Param("id")id: string, @Body() product: Partial<Products>){
         return this.productsService.editProduct(Number(id), product)
     }
 
@@ -27,10 +29,10 @@ export class ProductsController{
         return this.productsService.getProductById(Number(id))
     }
 
-    @Get(":name")
-    getProductByName(@Param("name") name: string) {
-        return this.productsService.getProductByName(name)
-    }
+    //@Get(":nombre")
+    //getProductByName(@Param("nombre") nombre: string) {
+    //    return this.productsService.getProductByName(nombre)
+    //}
 
     @Get("find/:category")
     getProductByCategory(@Param("category") category: string){
