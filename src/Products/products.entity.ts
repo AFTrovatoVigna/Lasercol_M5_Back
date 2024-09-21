@@ -1,63 +1,63 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
-    name:"products"
+  name: 'PRODUCTS',
 })
-export class Products{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Products {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({
-        type:"varchar",
-        length: 50,
-        nullable: false,
-        unique: true
-    })
-    nombre: string
+  @Column({
+    type: 'varchar',
+    length: 50,
+    nullable: false,
+    unique: true,
+  })
+  nombre: string;
 
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    color: string;
-    
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    material: string;
-    
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    medidas: string;
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  color: string;
 
-    @Column({
-        type: 'int',
-        nullable: false
-    })
-    stock: number;
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  material: string;
 
-    @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false
-    })
-    valor: number;
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  medidas: string;
 
-    @Column({
-        type: 'varchar',
-        length: 255,
-        default: 'default-image-url.jpg'
-    })
-    imgUrl: string;
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  stock: number;
 
-    @Column({
-        type:"varchar",
-        length: 50,
-        nullable: false
-    })
-    category: string
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    nullable: false,
+  })
+  valor: number;
+
+  @Column({
+    type: 'varchar',
+    length: 255,
+    default: 'default-image-url.jpg',
+  })
+  imgUrl: string;
+
+  @Column({
+    type: 'varchar',
+    length: 50,
+    nullable: false,
+  })
+  category: string;
 }
