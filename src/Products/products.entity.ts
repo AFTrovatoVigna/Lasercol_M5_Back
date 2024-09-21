@@ -60,10 +60,4 @@ export class Products{
         nullable: false
     })
     category: string
-
-    @Column({
-        type: "boolean",
-        nullable: false
-    })
-    isDeleted: boolean
 }
