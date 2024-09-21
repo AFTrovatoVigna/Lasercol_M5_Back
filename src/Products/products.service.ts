@@ -1,9 +1,19 @@
-import { Injectable } from "@nestjs/common";
-import { error } from "console";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Products } from "./products.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Categories } from "src/categories/category.entity";
 
 @Injectable()
 export class ProductsService{
+
+    constructor(
+        @InjectRepository(Products)
+        private productsRepository: Repository<Products>,
+        @InjectRepository(Categories)
+        private categoriesRepository: Repository<Categories>
+    ){}
+
     private products = [
         {
             id: 1,
@@ -36,60 +46,62 @@ export class ProductsService{
             imgUrl: 'Image url 3',
             category: "cuaderno"        }
     ];
-    
+
+    async 
 
     async getProducts(){
-        return this.products
+        let products = await this.productsRepository.find({})    
     }
 
     async getProductById(id: number) {
-        const product = this.products.find(prod => prod.id === id)
+        const product = await this.productsRepository.findOneBy({ id });
         if (!product) {
-            throw new Error('Producto no encontrado');
+            throw new NotFoundException('Producto no encontrado');
         }
-        return product
+        return product;
     }
 
     async getProductByName(name: string) {
-        const product = this.products.find(prod => prod.nombre === name)
+        const product = await this.productsRepository.findOneBy({ nombre: name });
         if (!product) {
-            throw new Error('Producto no encontrado');
+            throw new NotFoundException('Producto no encontrado');
         }
-        return product
+        return product;
     }
 
-    async getProductByCategory(category: string) {
-        const product = this.products.filter(prod => prod.category === category);
-        if (!product) {
-            throw new Error('Producto no encontrado');
-        }
-        return product
-    }
+    //async getProductByCategory(category: string) {
+    //    const categoryEntity = await this.categoriesRepository.findOneBy({ name: category });
+    //    if (!categoryEntity) {
+    //        throw new NotFoundException('Categoría no encontrada');
+    //    }
+    //    
+    //    const products = await this.productsRepository.find({ where: { category: categoryEntity } });
+    //    if (products.length === 0) {
+    //        throw new NotFoundException('No se encontraron productos en esta categoría');
+    //    }
+    //    return products;
+    //}
 
     async addProduct(product: Partial<Products>) {
-        const maxId = this.products.reduce((max, prod) => Math.max(max, prod.id), 0);
-        product.id = maxId + 1;
-        this.products.push(product as Products)
-        return product
+        const newProduct = this.productsRepository.create(product);
+        return await this.productsRepository.save(newProduct);
     }
 
     async editProduct(id: number, product: Partial<Products>) {
-        const existingProductIndex = this.products.findIndex(prod => prod.id === id);
-        if (existingProductIndex === -1) {
-            throw new Error('Producto no encontrado');
+        const existingProduct = await this.productsRepository.findOneBy({ id });
+        if (!existingProduct) {
+            throw new NotFoundException('Producto no encontrado');
         }
-        const existingProduct = this.products[existingProductIndex];
-        const updatedProduct = { ...existingProduct, ...product, id };
-        this.products[existingProductIndex] = updatedProduct;
-        return updatedProduct;
+        const updatedProduct = Object.assign(existingProduct, product);
+        return await this.productsRepository.save(updatedProduct);
     }
 
     async deleteProduct(id: number) {
-        const existingProductIndex = this.products.findIndex(prod => prod.id === id);
-        if (existingProductIndex === -1) {
-            throw new Error('Producto no encontrado');
+        const existingProduct = await this.productsRepository.findOneBy({ id });
+        if (!existingProduct) {
+            throw new NotFoundException('Producto no encontrado');
         }
-        this.products.splice(existingProductIndex, 1);
-        return { message: `producto con el id ${id} fue eliminado` };
+        await this.productsRepository.remove(existingProduct);
+        return { message: `Producto con el id ${id} fue eliminado` };
     }
 }
