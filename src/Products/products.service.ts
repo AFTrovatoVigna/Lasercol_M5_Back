@@ -14,9 +14,7 @@ export class ProductsService{
             stock: 20,
             valor: 25000.00,
             imgUrl: 'Image url 1',
-            category: "taza",
-            isDeleted: false
-        },
+            category: "taza",        },
         {
             id: 2,
             nombre: 'Bolígrafo_ergonómico',
@@ -26,9 +24,7 @@ export class ProductsService{
             stock: 50,
             valor: 10000.00,
             imgUrl: 'Image url 2',
-            category: "boligrafo",
-            isDeleted: false
-        },
+            category: "boligrafo"        },
         {
             id: 3,
             nombre: 'Cuaderno_con_espiral',
@@ -38,9 +34,7 @@ export class ProductsService{
             stock: 30,
             valor: 18000.00,
             imgUrl: 'Image url 3',
-            category: "cuaderno",
-            isDeleted: false
-        }
+            category: "cuaderno"        }
     ];
     
 
