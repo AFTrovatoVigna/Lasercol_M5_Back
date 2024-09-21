@@ -6,13 +6,13 @@ import { CategoriesService } from './categories/categories.service';
 export class HomeController {
   constructor(
     private readonly productoService: ProductsService,
-    private readonly categoriaService: CategoriesService,
+    private readonly categoriesService: CategoriesService,
   ) {}
 
   @Get()
   async obtenerDatosHome() {
     const productos = await this.productoService.getProducts();
-    const categorias = await this.categoriaService.getCategories();
+    const categorias = await this.categoriesService.getCategories();
     return {
       productos,
       categorias,

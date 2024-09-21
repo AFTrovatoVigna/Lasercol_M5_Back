@@ -1,0 +1,164 @@
+[
+  {
+    "nombre": "Relicario",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 30 mm",
+    "stock": 5,
+    "valor": 50000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Relicario",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 30 mm",
+    "stock": 5,
+    "valor": 50000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Collar de corazon",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "32 x 30 mm",
+    "stock": 10,
+    "valor": 48000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Collar de corazon",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "32 x 30 mm",
+    "stock": 8,
+    "valor": 48000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Collar circular",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 30 mm",
+    "stock": 6,
+    "valor": 48000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Collar circular",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 30 mm",
+    "stock": 6,
+    "valor": 48000.0,
+    "category": "collares"
+  },
+  {
+    "nombre": "Llavero placa",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 50 mm",
+    "stock": 6,
+    "valor": 45000.0,
+    "category": "llaveros"
+  },
+  {
+    "nombre": "Llavero placa",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 50 mm",
+    "stock": 4,
+    "valor": 45000.0,
+    "category": "llaveros"
+  },
+  {
+    "nombre": "Llavero con placa adicional",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 50 y 30 x 30 mm",
+    "stock": 6,
+    "valor": 45000.0,
+    "category": "llaveros"
+  },
+  {
+    "nombre": "Llavero con placa adicional",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "30 x 50 y 30 x 30 mm",
+    "stock": 6,
+    "valor": 45000.0,
+    "category": "llaveros"
+  },
+  {
+    "nombre": "Placa hueso grande",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "50 x 28 mm",
+    "stock": 8,
+    "valor": 25000.0,
+    "category": "placas mascotas"
+  },
+  {
+    "nombre": "Placa hueso grande",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "50 x 28 mm",
+    "stock": 10,
+    "valor": 25000.0,
+    "category": "placas mascotas"
+  },
+  {
+    "nombre": "Placa hueso pequeño",
+    "color": "Plateado",
+    "material": "Acero Inoxidable",
+    "medidas": "40 x 22 mm",
+    "stock": 6,
+    "valor": 22000.0,
+    "category": "placas mascotas"
+  },
+  {
+    "nombre": "Placa hueso pequeño",
+    "color": "Dorado",
+    "material": "Acero Inoxidable",
+    "medidas": "40 x 22 mm",
+    "stock": 5,
+    "valor": 22000.0,
+    "category": "placas mascotas"
+  },
+  {
+    "nombre": "Placa hueso pequeño",
+    "color": "Oro rosa",
+    "material": "Acero Inoxidable",
+    "medidas": "40 x 22 mm",
+    "stock": 6,
+    "valor": 22000.0,
+    "category": "placas mascotas"
+  },
+  {
+    "nombre": "Manilla de identificacion",
+    "color": "Negro",
+    "material": "Acero Inoxidable y silicona",
+    "medidas": "32 x 12 mm",
+    "stock": 10,
+    "valor": 40000.0,
+    "category": "manillas ID"
+  },
+  {
+    "nombre": "Manilla de identificacion",
+    "color": "Rosado",
+    "material": "Acero Inoxidable y silicona",
+    "medidas": "32 x 12 mm",
+    "stock": 10,
+    "valor": 40000.0,
+    "category": "manillas ID"
+  },
+  {
+    "nombre": "Manilla de identificacion",
+    "color": "Blanco",
+    "material": "Acero Inoxidable y silicona",
+    "medidas": "32 x 12 mm",
+    "stock": 10,
+    "valor": 40000.0,
+    "category": "manillas ID"
+  }
+]
