@@ -3,8 +3,6 @@ import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './Products/products.module';
 import { HomeController } from './app.controller';
-import { CategoriesService } from './categories/categories.service';
-import { ProductsService } from './Products/products.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
