@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Categories } from 'src/categories/categories.entity';
+import { OrderDetails } from 'src/orders/orderdetails.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'PRODUCTS',
@@ -13,13 +22,13 @@ export class Products {
     nullable: false,
     unique: true,
   })
-  nombre: string;
+  name: string;
 
   @Column({
     type: 'text',
     nullable: false,
   })
-  color: string;
+  description: string;
 
   @Column({
     type: 'text',
@@ -31,13 +40,13 @@ export class Products {
     type: 'text',
     nullable: false,
   })
-  medidas: string;
+  medida: string;
 
   @Column({
-    type: 'int',
+    type: 'text',
     nullable: false,
   })
-  stock: number;
+  color: string;
 
   @Column({
     type: 'decimal',
@@ -45,7 +54,13 @@ export class Products {
     scale: 2,
     nullable: false,
   })
-  valor: number;
+  price: number;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  stock: number;
 
   @Column({
     type: 'varchar',
@@ -60,4 +75,17 @@ export class Products {
     nullable: false,
   })
   category: string;
+
+  @Column({
+    type: 'boolean',
+    nullable: false,
+  })
+  isDeleted: boolean;
+
+  @ManyToOne(() => Categories, (categories) => categories.products)
+  @JoinColumn({ name: 'category_id' })
+  categories: Categories;
+
+  @ManyToMany(() => OrderDetails, (orderDetails) => orderDetails.products)
+  orderDetails: OrderDetails[];
 }

@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Orders } from 'src/orders/orders.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'USERS',
@@ -68,4 +75,8 @@ export class Users {
     default: false,
   })
   isAdmin: boolean;
+
+  @OneToMany(() => Orders, (order) => order.user)
+  @JoinColumn({ name: 'orders_id' })
+  orders: Orders[];
 }
