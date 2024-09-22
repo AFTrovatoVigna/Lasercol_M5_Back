@@ -1,8 +1,3 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Products } from './products.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Categories } from 'src/categories/category.entity';
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { Products } from './products.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,7 +21,7 @@ export class ProductsService implements OnModuleInit {
   async getProducts(page: number, limit: number): Promise<Products[]> {
     let products = await this.productsRepository.find({
       relations: {
-        category: true,
+        categories: true,
       },
     });
     const start = (page - 1) * limit;
@@ -43,13 +38,13 @@ export class ProductsService implements OnModuleInit {
       );
       const product = new Products();
 
-      product.nombre = element.nombre;
+      product.name = element.nombre;
       product.color = element.color;
       product.material = element.material;
-      product.medidas = element.medidas;
+      product.medida = element.medidas;
       product.stock = element.stock;
-      product.valor = element.valor;
-      product.category = category;
+      product.price = element.valor;
+      product.categories = category;
 
       await this.productsRepository
         .createQueryBuilder()
@@ -70,7 +65,7 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductByName(name: string) {
-    const product = await this.productsRepository.findOneBy({ nombre: name });
+    const product = await this.productsRepository.findOneBy({ name: name });
     if (!product) {
       throw new NotFoundException('Producto no encontrado');
     }
@@ -106,7 +101,7 @@ export class ProductsService implements OnModuleInit {
         throw new NotFoundException('Categoría no encontrada');
     }
     
-    const products = await this.productsRepository.find({ where: { category: categoryEntity } });
+    const products = await this.productsRepository.find({ where: { categories: categoryEntity } });
     if (products.length === 0) {
         throw new NotFoundException('No se encontraron productos en esta categoría');
     }
