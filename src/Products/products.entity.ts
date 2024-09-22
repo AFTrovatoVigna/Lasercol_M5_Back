@@ -1,17 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Categories } from 'src/categories/categories.entity';
+import { OrderDetails } from 'src/orders/orderdetails.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'PRODUCTS',
 })
 export class Products {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     type: 'varchar',
     length: 50,
     nullable: false,
-    unique: true,
   })
   nombre: string;
 
@@ -54,10 +62,12 @@ export class Products {
   })
   imgUrl: string;
 
-  @Column({
-    type: 'varchar',
-    length: 50,
-    nullable: false,
+  @ManyToMany(() => OrderDetails, (orderDetails) => orderDetails.products)
+  orderDetail: OrderDetails[];
+
+  @ManyToOne(() => Categories, (category) => category.products)
+  @JoinColumn({
+    name: 'category',
   })
-  category: string;
+  category: Categories;
 }

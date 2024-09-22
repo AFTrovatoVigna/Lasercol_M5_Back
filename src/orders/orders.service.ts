@@ -3,13 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from 'src/Products/products.entity';
 import { Users } from 'src/users/users.entity';
 import { Repository } from 'typeorm';
+import { Orders } from './orders.entity';
+import { OrderDetails } from './orderdetails.entity';
 
 @Injectable()
 export class OrdersService {
   constructor(
     @InjectRepository(Orders)
     private ordersRepository: Repository<Orders>,
-    @InjectRepository(OrderDetail)
+    @InjectRepository(OrderDetails)
     private orderDetailsRepository: Repository<OrderDetails>,
     @InjectRepository(Users)
     private usersRepository: Repository<Users>,
@@ -22,7 +24,7 @@ export class OrdersService {
     const user = await this.usersRepository.findOneBy({ id: userId });
 
     if (!user) {
-      throw new NotFoundException();
+      throw new NotFoundException('usuario no encontrado');
     }
 
     const order = new Orders();
@@ -41,7 +43,7 @@ export class OrdersService {
           throw new NotFoundException();
         }
 
-        total += Number(product.price);
+        total += Number(product.valor);
 
         await this.productsRepository.update(
           { id: element.id },
@@ -63,7 +65,7 @@ export class OrdersService {
     return await this.ordersRepository.find({
       where: { id: newOrder.id },
       relations: {
-        orderDetail: true,
+        orderDetails: true,
       },
     });
   }
