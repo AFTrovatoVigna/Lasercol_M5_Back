@@ -1,6 +1,16 @@
 import {
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Orders } from './orders.entity';
+import { Products } from 'src/Products/products.entity';
+import {
+  Column,
+  Entity,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -25,10 +35,19 @@ export class OrderDetails {
   price: number;
 
   @OneToOne(() => Orders, (order) => order.orderDetails)
-  @JoinColumn({ name: 'order_id' })
   order: Orders;
 
   @ManyToMany(() => Products)
-  @JoinTable({ name: 'ORDER_DETAILS_PRODUCTS' })
+  @JoinTable({
+    name: 'orderDetails_products',
+    joinColumn: {
+      name: 'product_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'orderdetail_id',
+      referencedColumnName: 'id',
+    },
+  })
   products: Products[];
 }

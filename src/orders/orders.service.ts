@@ -24,7 +24,7 @@ export class OrdersService {
     const user = await this.usersRepository.findOneBy({ id: userId });
 
     if (!user) {
-      throw new NotFoundException();
+      throw new NotFoundException('usuario no encontrado');
     }
 
     const order = new Orders();
@@ -43,7 +43,7 @@ export class OrdersService {
           throw new NotFoundException();
         }
 
-        total += Number(product.price);
+        total += Number(product.valor);
 
         await this.productsRepository.update(
           { id: element.id },
