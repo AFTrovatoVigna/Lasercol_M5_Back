@@ -8,6 +8,17 @@ import {
 } from 'typeorm';
 import { Orders } from './orders.entity';
 import { Products } from 'src/Products/products.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Orders } from './orders.entity';
+import { Products } from 'src/Products/products.entity';
 
 @Entity({
   name: 'ORDER_DETAILS',
