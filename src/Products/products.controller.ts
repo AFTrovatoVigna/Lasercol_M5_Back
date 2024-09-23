@@ -20,7 +20,7 @@ export class ProductsController {
     if (page && limit) {
       return this.productsService.getProducts(page, limit);
     }
-    return this.productsService.getProducts(1, 5);
+    return this.productsService.getProducts(1, 100);
   }
 
   @Post()

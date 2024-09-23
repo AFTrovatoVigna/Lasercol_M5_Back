@@ -23,6 +23,9 @@ export class ProductsService implements OnModuleInit {
       relations: {
         category: true,
       },
+      order: {
+        nombre: 'ASC', // Cambia 'nombre' por el campo que deseas ordenar
+      },
     });
     const start = (page - 1) * limit;
     const end = start + +limit;
@@ -57,7 +60,12 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductById(id: string) {
-    const product = await this.productsRepository.findOneBy({ id });
+    const product = await this.productsRepository.findOne({
+      where: { id },
+      relations: {
+        category: true,
+      },
+    });
     if (!product) {
       throw new NotFoundException('Producto no encontrado');
     }
