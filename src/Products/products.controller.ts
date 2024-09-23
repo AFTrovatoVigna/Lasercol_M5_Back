@@ -43,10 +43,10 @@ export class ProductsController {
   //    return this.productsService.getProductByName(nombre)
   //}
 
-  //   @Get(':category')
-  //   getProductByCategory(@Param('category') category: string) {
-  //     return this.productsService.getProductByCategory(category);
-  //   }
+  @Get(':category')
+  getProductByCategory(@Param('category') category: string) {
+    return this.productsService.getProductByCategory(category);
+  }
 
   @Delete(':id')
   deleteProduct(@Param('id') id: string) {
