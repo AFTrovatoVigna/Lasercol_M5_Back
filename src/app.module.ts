@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { FileUploadModule } from './file-upload/fileUpload.module';
 
 @Module({
   imports: [
@@ -21,9 +22,9 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     CategoriesModule,
     ProductsModule,
+    FileUploadModule,
   ],
   controllers: [HomeController],
   providers: [AppService],
 })
 export class AppModule {}
-// este es el home

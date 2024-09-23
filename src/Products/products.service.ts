@@ -15,13 +15,22 @@ export class ProductsService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    await this.addProductsSeeder();
+    const count = await this.productsRepository.count();
+    if (count === 0) {
+      console.log('La tabla de productos está vacía. Precargando datos...');
+      await this.addProductsSeeder();
+    } else {
+      console.log('La tabla de productos ya tiene datos.');
+    }
   }
 
   async getProducts(page: number, limit: number): Promise<Products[]> {
     let products = await this.productsRepository.find({
       relations: {
         category: true,
+      },
+      order: {
+        nombre: 'ASC',
       },
     });
     const start = (page - 1) * limit;
@@ -93,5 +102,26 @@ export class ProductsService implements OnModuleInit {
     }
     await this.productsRepository.remove(existingProduct);
     return { message: `Producto con el id ${id} fue eliminado` };
+  }
+
+  async getProductByCategory(category: string) {
+    const categoryEntity = await this.categoriesRepository.findOneBy({
+      name: category,
+    });
+    if (!categoryEntity) {
+      throw new NotFoundException('Categoría no encontrada');
+    }
+
+    const products = await this.productsRepository.find({
+      where: { category: categoryEntity },
+      relations: { category: true },
+    });
+
+    if (products.length === 0) {
+      throw new NotFoundException(
+        'No se encontraron productos en esta categoría',
+      );
+    }
+    return products;
   }
 }
