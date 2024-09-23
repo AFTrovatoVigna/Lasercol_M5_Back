@@ -20,7 +20,8 @@ export class ProductsController {
     if (page && limit) {
       return this.productsService.getProducts(page, limit);
     }
-    return this.productsService.getProducts(1, 100);
+
+    return this.productsService.getProducts(1, 15);
   }
 
   @Post()
@@ -38,16 +39,15 @@ export class ProductsController {
     return this.productsService.editProduct(id, product);
   }
 
+  @Get(':nombre')
+  getProductByName(@Param('nombre') nombre: string) {
+    return this.productsService.getProductByName(nombre);
+  }
+
   @Get(':id')
   getProductById(@Param('id') id: string) {
     return this.productsService.getProductById(id);
   }
-
-  //@Get(":nombre")
-  //getProductByName(@Param("nombre") nombre: string) {
-  //    return this.productsService.getProductByName(nombre)
-  //}
-
 
   @Get(':category')
   getProductByCategory(@Param('category') category: string) {

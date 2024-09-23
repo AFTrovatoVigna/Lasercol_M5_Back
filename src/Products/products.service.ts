@@ -32,6 +32,9 @@ export class ProductsService implements OnModuleInit {
       order: {
         nombre: 'ASC', // Cambia 'nombre' por el campo que deseas ordenar
       },
+      order: {
+        nombre: 'ASC',
+      },
     });
     const start = (page - 1) * limit;
     const end = start + +limit;
@@ -110,16 +113,24 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductByCategory(category: string) {
-    const categoryEntity = await this.categoriesRepository.findOneBy({ name: category });
+
+    const categoryEntity = await this.categoriesRepository.findOneBy({
+      name: category,
+    });
     if (!categoryEntity) {
-        throw new NotFoundException('Categoría no encontrada');
+      throw new NotFoundException('Categoría no encontrada');
     }
-    
-    const products = await this.productsRepository.find({ where: { category: categoryEntity },
-    relations: {category: true} });
+
+    const products = await this.productsRepository.find({
+      where: { category: categoryEntity },
+      relations: { category: true },
+    });
 
     if (products.length === 0) {
-        throw new NotFoundException('No se encontraron productos en esta categoría');
+      throw new NotFoundException(
+        'No se encontraron productos en esta categoría',
+      );
+
     }
     return products;
   }
