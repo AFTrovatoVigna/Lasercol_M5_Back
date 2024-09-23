@@ -53,6 +53,7 @@ export class ProductsService implements OnModuleInit {
       product.medidas = element.medidas;
       product.stock = element.stock;
       product.valor = element.valor;
+      product.imgUrl = element.imgUrl;
       product.category = category;
 
       await this.productsRepository
