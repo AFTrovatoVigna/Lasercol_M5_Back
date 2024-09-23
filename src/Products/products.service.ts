@@ -15,7 +15,13 @@ export class ProductsService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    await this.addProductsSeeder();
+    const count = await this.productsRepository.count();
+    if (count === 0) {
+      console.log('La tabla de productos está vacía. Precargando datos...');
+      await this.addProductsSeeder();
+    } else {
+      console.log('La tabla de productos ya tiene datos.');
+    }
   }
 
   async getProducts(page: number, limit: number): Promise<Products[]> {
