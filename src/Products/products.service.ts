@@ -101,10 +101,12 @@ export class ProductsService implements OnModuleInit {
         throw new NotFoundException('Categoría no encontrada');
     }
     
-    const products = await this.productsRepository.find({ where: { categories: categoryEntity } });
+    const products = await this.productsRepository.find({ where: { category: categoryEntity },
+    relations: {category: true} });
+
     if (products.length === 0) {
         throw new NotFoundException('No se encontraron productos en esta categoría');
     }
     return products;
-}
+  }
 }
