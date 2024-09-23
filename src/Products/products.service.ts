@@ -27,7 +27,10 @@ export class ProductsService implements OnModuleInit {
   async getProducts(page: number, limit: number): Promise<Products[]> {
     let products = await this.productsRepository.find({
       relations: {
-        category: true,
+        categories: true,
+      },
+      order: {
+        nombre: 'ASC', // Cambia 'nombre' por el campo que deseas ordenar
       },
       order: {
         nombre: 'ASC',
@@ -47,13 +50,13 @@ export class ProductsService implements OnModuleInit {
       );
       const product = new Products();
 
-      product.nombre = element.nombre;
+      product.name = element.nombre;
       product.color = element.color;
       product.material = element.material;
-      product.medidas = element.medidas;
+      product.medida = element.medidas;
       product.stock = element.stock;
-      product.valor = element.valor;
-      product.category = category;
+      product.price = element.valor;
+      product.categories = category;
 
       await this.productsRepository
         .createQueryBuilder()
@@ -66,7 +69,12 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductById(id: string) {
-    const product = await this.productsRepository.findOneBy({ id });
+    const product = await this.productsRepository.findOne({
+      where: { id },
+      relations: {
+        category: true,
+      },
+    });
     if (!product) {
       throw new NotFoundException('Producto no encontrado');
     }
@@ -74,7 +82,7 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductByName(name: string) {
-    const product = await this.productsRepository.findOneBy({ nombre: name });
+    const product = await this.productsRepository.findOneBy({ name: name });
     if (!product) {
       throw new NotFoundException('Producto no encontrado');
     }
@@ -105,6 +113,7 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductByCategory(category: string) {
+
     const categoryEntity = await this.categoriesRepository.findOneBy({
       name: category,
     });
@@ -121,6 +130,7 @@ export class ProductsService implements OnModuleInit {
       throw new NotFoundException(
         'No se encontraron productos en esta categoría',
       );
+
     }
     return products;
   }

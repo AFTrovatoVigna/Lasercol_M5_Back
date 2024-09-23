@@ -20,12 +20,18 @@ export class ProductsController {
     if (page && limit) {
       return this.productsService.getProducts(page, limit);
     }
+
     return this.productsService.getProducts(1, 15);
   }
 
   @Post()
   addProduct(@Body() product: Partial<Products>) {
     return this.productsService.addProduct(product);
+  }
+
+  @Get(':category')
+  getProductByCategory(@Param('category') category: string) {
+    return this.productsService.getProductByCategory(category);
   }
 
   @Put(':id')
@@ -47,6 +53,7 @@ export class ProductsController {
   getProductByCategory(@Param('category') category: string) {
     return this.productsService.getProductByCategory(category);
   }
+
 
   @Delete(':id')
   deleteProduct(@Param('id') id: string) {
