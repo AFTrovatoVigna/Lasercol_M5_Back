@@ -56,7 +56,10 @@ export class ProductsService implements OnModuleInit {
       product.medida = element.medidas;
       product.stock = element.stock;
       product.price = element.valor;
+      product.imgUrl = element.imgUrl;
       product.categories = category;
+      
+
 
       await this.productsRepository
         .createQueryBuilder()
