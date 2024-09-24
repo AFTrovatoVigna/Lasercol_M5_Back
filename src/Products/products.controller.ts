@@ -20,6 +20,7 @@ export class ProductsController {
     if (page && limit) {
       return this.productsService.getProducts(page, limit);
     }
+
     return this.productsService.getProducts(1, 15);
   }
 
@@ -47,6 +48,7 @@ export class ProductsController {
   editProduct(@Param('id') id: string, @Body() product: Partial<Products>) {
     return this.productsService.editProduct(id, product);
   }
+
 
   @Delete(':id')
   deleteProduct(@Param('id') id: string) {
