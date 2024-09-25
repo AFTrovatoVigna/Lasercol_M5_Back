@@ -30,10 +30,7 @@ export class ProductsService implements OnModuleInit {
         categories: true,
       },
       order: {
-        nombre: 'ASC', // Cambia 'nombre' por el campo que deseas ordenar
-      },
-      order: {
-        nombre: 'ASC',
+        name: 'ASC',
       },
     });
     const start = (page - 1) * limit;
@@ -58,8 +55,6 @@ export class ProductsService implements OnModuleInit {
       product.price = element.valor;
       product.imgUrl = element.imgUrl;
       product.categories = category;
-      
-
 
       await this.productsRepository
         .createQueryBuilder()
@@ -75,7 +70,7 @@ export class ProductsService implements OnModuleInit {
     const product = await this.productsRepository.findOne({
       where: { id },
       relations: {
-        category: true,
+        categories: true,
       },
     });
     if (!product) {
@@ -116,7 +111,6 @@ export class ProductsService implements OnModuleInit {
   }
 
   async getProductByCategory(category: string) {
-
     const categoryEntity = await this.categoriesRepository.findOneBy({
       name: category,
     });
@@ -125,15 +119,14 @@ export class ProductsService implements OnModuleInit {
     }
 
     const products = await this.productsRepository.find({
-      where: { category: categoryEntity },
-      relations: { category: true },
+      where: { categories: categoryEntity },
+      relations: { categories: true },
     });
 
     if (products.length === 0) {
       throw new NotFoundException(
         'No se encontraron productos en esta categoría',
       );
-
     }
     return products;
   }

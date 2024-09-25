@@ -18,7 +18,6 @@ const config = {
   autoLoadEntities: true,
   dropSchema: false,
 };
-console.log(process.env.DB_HOST);
 
 export default registerAs('typeorm', () => config);
 export const connectionSource = new DataSource(config as DataSourceOptions);
