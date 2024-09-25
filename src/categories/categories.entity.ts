@@ -6,6 +6,14 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Products } from 'src/Products/products.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'CATEGORYS',
@@ -17,7 +25,7 @@ export class Categories {
   @Column({ type: 'varchar', nullable: false, unique: true })
   name: string;
 
-  @OneToMany(() => Products, (products) => products.category)
+  @OneToMany(() => Products, (products) => products.categories)
   @JoinColumn()
   products: Products[];
 }
